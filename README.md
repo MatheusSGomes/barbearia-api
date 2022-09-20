@@ -2,6 +2,9 @@
 
 API consumida pelo front-end: https://github.com/MatheusSGomes/barbearia-front-end
 
+- Documentação com Swagger
+- Testes com PHPUnit
+- Banco de dados MySQL
 
 GET: /api/agenda
 [
