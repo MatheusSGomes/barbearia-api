@@ -1,10 +1,15 @@
 # API Barbearia
 
-API consumida pelo front-end: https://github.com/MatheusSGomes/barbearia-front-end
+API criada para ser consumida pelo front-end: https://github.com/MatheusSGomes/barbearia-front-end
 
 - Documentação com Swagger
 - Testes com PHPUnit
 - Banco de dados MySQL
+
+- Autenticação com Laravel Sanctum
+
+- Tratamento de erros
+- Relacionamento com tabela de serviços (assim o administrator pode futuramente adicionar novos serviços a barbearia)
 
 GET: /api/agenda
 [

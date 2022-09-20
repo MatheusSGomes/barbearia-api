@@ -31,13 +31,13 @@ class AgendamentoController extends Controller
         ], 200);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $agendamento = Agendamento::find($id);
         return response()->json($agendamento, 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(int $id, Request $request)
     {
         $agendamento = Agendamento::find($id);
         $agendamento->nome = $request->nome;
@@ -50,13 +50,16 @@ class AgendamentoController extends Controller
         $agendamento->horario = $request->horario;
         $agendamento->save();
 
-        return response()->json(["message"=> "Agendamento atualizado com sucesso"], 200);
+        return response()->json([
+            "message"=> "Agendamento atualizado com sucesso"
+        ], 200);
     }
 
     public function destroy($id)
     {
-        $agendamento = Agendamento::find($id);
-        $agendamento->delete();
-        return response()->json(["message" => "Agendamento apagado com sucesso"], 200);
+        $agendamento = Agendamento::find($id)->delete();
+        return response()->json([
+            "message" => "Agendamento apagado com sucesso"
+        ], 204);
     }
 }
