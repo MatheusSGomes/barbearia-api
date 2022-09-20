@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('agendamentos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('whatsapp');
-            $table->boolean('corte')->default(false);
-            $table->boolean('sobrancelhas')->default(false);
-            $table->boolean('barba')->default(false);
-            $table->boolean('hidratação')->default(false);
+            $table->string('email');
+            $table->string('whatsapp')->nullable();
+            $table->boolean('corte')->default(false)->nullable();
+            $table->boolean('sobrancelhas')->default(false)->nullable();
+            $table->boolean('barba')->default(false)->nullable();
+            $table->boolean('hidratacao')->default(false)->nullable();
             $table->string('horario');
             $table->timestamps();
         });

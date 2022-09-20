@@ -1,5 +1,8 @@
 # API Barbearia
 
+API consumida pelo front-end: https://github.com/MatheusSGomes/barbearia-front-end
+
+
 GET: /api/agenda
 [
 	{
@@ -31,12 +34,12 @@ GET: /api/agenda
 POST: /api/agenda
 {
 	"email": "joao@email.com",
-	"whatsap": "61 9089-9089",
-	"servicos": [
-			"corte",
-			"sobrancelhas",
-			"barba",
-			"hidratação"
-	],
+	"whatsapp": "61 9089-9089",
+	"servicos": {
+			"corte": true,
+			"sobrancelhas": true,
+			"barba": true,
+			"hidratação": true
+	},
 	"horario": "seg-13-14"
 }
