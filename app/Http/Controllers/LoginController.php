@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,7 @@ class LoginController extends Controller
         // https://laravel.com/docs/9.x/authentication#authenticating-users
 
         if (Auth::attempt($credentials)) {
-            $request->
+            
         }
 
     }
