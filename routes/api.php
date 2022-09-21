@@ -9,10 +9,11 @@ use App\Http\Controllers\{
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('/agenda', AgendamentoController::class);
-Route::apiResource('/usuario', UserController::class);
 
-
-
+Route::middleware('auth:sanctum')->group(function() {
+    Route::apiResource('/usuario', UserController::class);
+    Route::get('/teste', function () { return ["Rota de teste"]; }); 
+});
 
 Route::get('/protegida', function () {
     return response()->json(["message" => "Rota protegida acessada"], 200);
