@@ -3,8 +3,12 @@
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\PersonalAccessToken;
+
+Route::post('/register', [UserController::class, 'store']);
 
 Route::post('/login', function (Request $request) {
   $credentials = $request->only(['email', 'password']);
@@ -25,4 +29,22 @@ Route::post('/login', function (Request $request) {
   }
 });
 
-Route::post('/register', [UserController::class, 'store']);
+Route::post('/logout', function (Request $request) {
+    // $auth = $request->header('Authorization');
+    // $user = User::where('api_token', $auth)->first();
+    // $token = PersonalAccessToken::where('token', $auth);
+    
+    try {
+        $token = $request->bearerToken();
+        $findUser = PersonalAccessToken::findToken($token);
+        $user = $findUser->tokenable;
+
+        $user->tokens->each(function ($token, $key) {
+            $token->delete();
+        });
+
+        return response()->json(["message" => "Usuário deslogado com sucesso"]);
+    } catch (Exception $e) {
+        return response()->json(["message" => "Não foi possível deslogar"]);
+    }
+});
