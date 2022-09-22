@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request): JsonResponse
-    {
+    {        
         try {
             $user = new User();
             $user->name = $request->name;
@@ -35,7 +35,7 @@ class UserController extends Controller
                 "message" => "Não foi possível cadastrar o usuário"
             ], 403);
         }
-      }
+    }
 
     public function show($id)
     {

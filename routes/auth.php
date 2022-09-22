@@ -3,7 +3,6 @@
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -23,6 +22,7 @@ Route::post('/login', function (Request $request) {
       ], 200, [
           "Authorization" => 'Bearer '.$token->plainTextToken,
           'Accept' => 'application/json',
+          'Teste' => 'teste 123'
       ]);
   } else {
       return response()->json(["message" => "Senha ou e-mail inválido"], 401);
