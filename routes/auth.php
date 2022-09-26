@@ -10,7 +10,6 @@ use Laravel\Sanctum\PersonalAccessToken;
 Route::post('/register', [UserController::class, 'store']);
 
 Route::post('/login', function (Request $request) {
-
     try {
         $credentials = $request->only(['email', 'password']);
         $user = User::whereEmail($credentials['email'])->first();
@@ -30,7 +29,6 @@ Route::post('/login', function (Request $request) {
     } catch (\Throwable $th) {
         return response()->json(["message" => "Senha ou e-mail inválido"], 401);
     }
-  
 });
 
 Route::post('/logout', function (Request $request) {
@@ -39,7 +37,14 @@ Route::post('/logout', function (Request $request) {
     // $token = PersonalAccessToken::where('token', $auth);
     
     try {
-        $token = $request->bearerToken();
+        $token = null;
+
+        if($request->input('authorization')) {
+            $token = $request->input('authorization');
+        } else {
+            $token = $request->bearerToken();
+        }
+
         $findUser = PersonalAccessToken::findToken($token);
         $user = $findUser->tokenable;
 
