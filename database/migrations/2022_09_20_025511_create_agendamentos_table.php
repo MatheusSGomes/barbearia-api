@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('sobrancelhas')->default(false)->nullable();
             $table->boolean('barba')->default(false)->nullable();
             $table->boolean('hidratacao')->default(false)->nullable();
-            $table->string('horario');
+            $table->string('horario')->unique();
             $table->timestamps();
         });
     }
